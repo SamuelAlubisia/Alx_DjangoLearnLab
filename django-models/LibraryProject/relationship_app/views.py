@@ -10,7 +10,7 @@ def book_list(request):
     context = {'book_list': books}  
     return render(request, 'relationship_app/list_books.html', context)
 
-from django.views.generic import DetailView
+from django.views.generic.detail import DetailView
 
 class LibraryDetailView(DetailView):
     model = Library
