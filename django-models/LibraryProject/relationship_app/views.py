@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+from .models import Library
 from django.http import HttpResponse
 from relationship_app.models import Book, Library # type: ignore
 
