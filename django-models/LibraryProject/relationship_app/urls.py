@@ -17,14 +17,11 @@ urlpatterns = [
 ]
 
 from django.urls import path
-from .admin_view import admin_view
-from .librarian_view import librarian_view
-from .member_view import member_view
+from . import admin_view, librarian_view, member_view
 
 urlpatterns = [
-    path('admin_dashboard/', admin_view.admin_view, name='admin_dashboard'),
-    path('librarian/', librarian_view, name='librarian_view'),
-    path('member/', member_view, name='member_view'),
+    path('admin-dashboard/', admin_view.admin_view, name='admin_dashboard'),
+    path('librarian-dashboard/', librarian_view.librarian_view, name='librarian_dashboard'),
+    path('member-dashboard/', member_view.member_view, name='member_dashboard'),
 ]
-
 
