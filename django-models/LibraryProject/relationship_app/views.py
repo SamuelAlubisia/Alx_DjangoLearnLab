@@ -5,9 +5,9 @@ from .models import Library
 from django.http import HttpResponse
 from relationship_app.models import Book, Library # type: ignore
 
-def book_list(request):
+def list_books(request):
     books = Book.objects.all()
-    context = {'book_list': books}  
+    context = {'list_books': books}  
     return render(request, 'relationship_app/list_books.html', context)
 
 from django.views.generic.detail import DetailView
