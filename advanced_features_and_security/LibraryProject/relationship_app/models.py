@@ -36,7 +36,7 @@ class CustomUser(AbstractUser):
     role = models.CharField(max_length=10, choices=[('Admin', 'Admin'), ('Librarian', 'Librarian'), ('Member', 'Member')], default='Member')
 
     objects = CustomUserManager()
-    
+
     def __str__(self):
         return f"{self.username} - {self.role}"
 
@@ -45,6 +45,9 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
+
+from django.db import models
+from django.utils import timezone
 
 class Book(models.Model):
     title = models.CharField(max_length=255)
@@ -57,10 +60,12 @@ class Book(models.Model):
             ("can_add_book", "Can add a new book"),
             ("can_change_book", "Can edit book details"),
             ("can_delete_book", "Can delete a book"),
+            ("can_view_book", "Can view book details"),  # 🔄 Added a view permission for completeness
         ]
 
     def __str__(self):
         return self.title
+
 
 class Library(models.Model):
     name = models.CharField(max_length=100)
