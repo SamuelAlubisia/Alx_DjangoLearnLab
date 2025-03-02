@@ -38,11 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookshelf',
-    'relationship_app',
 ]
 
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
 
-AUTH_USER_MODEL = 'relationship_app.CustomUser'
+
+# Media settings for profile photos
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

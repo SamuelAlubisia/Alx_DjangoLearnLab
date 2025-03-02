@@ -1,36 +1,15 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group, Permission
-from django.utils.translation import gettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
-from .models import CustomUser, Author, Book, Library, Librarian
+from .models import Author, Book, Library, Librarian  # Removed CustomUser import
 
-class CustomUserAdmin(BaseUserAdmin):
-    list_display = ('email', 'username', 'is_staff', 'is_active')
-    list_filter = ('is_staff', 'is_active')
-    search_fields = ('email', 'username')
-    ordering = ('email',)
-
-    fieldsets = (
-        (None, {'fields': ('email', 'username', 'password')}),
-        (_('Personal Info'), {'fields': ('profile_photo',)}),
-        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
-        (_('Important Dates'), {'fields': ('last_login', 'date_joined')}),
-    )
-
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email', 'username', 'password1', 'password2', 'is_staff', 'is_active')
-        }),
-    )
-
-admin.site.register(CustomUser, CustomUserAdmin)
+# Removed CustomUserAdmin class and CustomUser registration
 admin.site.register(Author)
 admin.site.register(Book)
 admin.site.register(Library)
 admin.site.register(Librarian)
 
+# Keep the group and permission setup if needed
 def setup_groups_and_permissions():
     editors_group, _ = Group.objects.get_or_create(name='Editors')
     viewers_group, _ = Group.objects.get_or_create(name='Viewers')
@@ -60,3 +39,4 @@ def setup_groups_and_permissions():
             admins_group.permissions.add(permission)
 
 setup_groups_and_permissions()
+
