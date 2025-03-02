@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, permission_required
+from .forms import ExampleForm
 from .models import Book
 
 # Updated to use login_required decorator for all views
