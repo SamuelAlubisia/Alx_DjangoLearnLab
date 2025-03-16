@@ -7,6 +7,7 @@ from .serializers import BookSerializer # type: ignore
 from datetime import datetime  # Import datetime module
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated # type: ignore
 from django_filters.rest_framework import DjangoFilterBackend # type: ignore
+from django_filters import rest_framework  # type: ignore
 
 
 # Get the current year dynamically
