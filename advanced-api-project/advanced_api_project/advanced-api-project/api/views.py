@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics,permissions, serializers # type: ignore
-from .models import Book # type: ignore
-from .serializers import BookSerializer # type: ignore
+from .models import Book
+from .serializers import BookSerializer
 from datetime import datetime  # Import datetime module
 
 # Get the current year dynamically

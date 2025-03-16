@@ -1,5 +1,5 @@
 from rest_framework import serializers # type: ignore
-from . models import Author,Book # type: ignore
+from . models import Author,Book
 from datetime import datetime
 
 class BookSerializer(serializers.ModelSerializer):
