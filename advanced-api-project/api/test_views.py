@@ -7,7 +7,7 @@ from .models import Book
 class BookAPITest(APITestCase):
     def setUp(self):
         """Set up the test client and test data"""
-        self.client = APIClient()
+        self.client.login(username='testuser', password='testpass')
 
         # Create a test user
         self.user = User.objects.create_user(username='testuser', password='testpass')
