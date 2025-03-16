@@ -5,6 +5,7 @@ from rest_framework import generics,permissions, serializers # type: ignore
 from .models import Book
 from .serializers import BookSerializer # type: ignore
 from datetime import datetime  # Import datetime module
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated # type: ignore
 
 # Get the current year dynamically
 CURRENT_YEAR = datetime.now().year
