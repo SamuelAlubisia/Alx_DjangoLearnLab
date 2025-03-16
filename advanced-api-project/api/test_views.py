@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import APITestCase
 from rest_framework.test import APIClient # type: ignore
 from rest_framework import status # type: ignore
 from .models import Book
 
-class BookAPITest(TestCase):
+class BookAPITest(APITestCase):
     def setUp(self):
         """Set up the test client and test data"""
         self.client = APIClient()
