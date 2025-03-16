@@ -1,11 +1,13 @@
 from django.shortcuts import render
 
 # Create your views here.
-from rest_framework import generics,permissions, serializers # type: ignore
+from rest_framework import generics,permissions, serializers, filters # type: ignore
 from .models import Book
 from .serializers import BookSerializer # type: ignore
 from datetime import datetime  # Import datetime module
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated # type: ignore
+from django_filters.rest_framework import DjangoFilterBackend # type: ignore
+
 
 # Get the current year dynamically
 CURRENT_YEAR = datetime.now().year
@@ -27,6 +29,16 @@ class BookListView(generics.ListAPIView):
     queryset = Book.objects.all()
     serialzier_class = BookSerializer
     permission_classes = [permissions.AllowAny]  # No login required
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter] 
+
+# Filtering by title, author, and publication year
+    filterset_fields = ['title', 'author', 'publication_year']
+
+    # Searching in title and author
+    search_fields = ['title', 'author']
+
+    # Ordering by title or publication year
+    ordering_fields = ['title', 'publication_year']
 
 class BookDetailView(generics.RetrieveAPIView):
     queryset = Book.objects.all()
