@@ -15,8 +15,28 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from django.http import HttpResponse 
+from django.shortcuts import render
+
+def login_view(request):
+    return render(request, "users/login.html")  # Ensure this matches the file structure
+
+def home(request):
+    return HttpResponse("<h1>Welcome to the Django Blog</h1>")
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+     path('', home, name='home'),  
+    path('', include('blog.urls')),
+
 ]
+
+# Stores images in media/profile_pics/
+# Ensures Django serves media files in development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Profile Page</h2>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label>Username:</label>
+            {{ user_form.username }}
+        </div>
+        <div>
+            <label>Email:</label>
+            {{ user_form.email }}
+        </div>
+        <div>
+            <label>Profile Picture:</label>
+            {{ profile_form.image }}
+            <img src="{{ user.profile.image.url }}" width="100px">
+        </div>
+        <div>
+            <label>Bio:</label>
+            {{ profile_form.bio }}
+        </div>
+        <button type="submit">Update Profile</button>
+    </form>
+{% endblock %}
+
