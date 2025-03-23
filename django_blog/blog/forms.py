@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Post
+from .models import Profile, Post, Comment
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -28,3 +28,13 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['image', 'bio'] # Allows users to update their profile picture and bio
 
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']  # Ensures only content is editable
+
+    def clean_content(self):
+        content = self.cleaned_data.get('content')
+        if len(content) < 3:
+            raise forms.ValidationError("Comment must be at least 3 characters long.")
+        return content

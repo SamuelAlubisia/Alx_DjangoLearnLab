@@ -10,3 +10,29 @@
         <a href="{% url 'post-delete' post.id %}">Delete</a>
     {% endif %}
 {% endblock %}
+
+<h2>Comments</h2>
+{% for comment in post.comments.all %}
+    <div>
+        <p><strong>{{ comment.author }}</strong> - {{ comment.created_at }}</p>
+        <p>{{ comment.content }}</p>
+        {% if comment.author == user %}
+            <a href="{% url 'edit-comment' comment.id %}">Edit</a> |
+            <a href="{% url 'delete-comment' comment.id %}">Delete</a>
+        {% endif %}
+    </div>
+{% empty %}
+    <p>No comments yet. Be the first to comment!</p>
+{% endfor %}
+
+<!-- Add Comment Form -->
+{% if user.is_authenticated %}
+    <form method="post" action="{% url 'add-comment' post.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Comment</button>
+    </form>
+{% else %}
+    <p>You must be logged in to comment.</p>
+{% endif %}
+
