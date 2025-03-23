@@ -4,9 +4,15 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, Post, Comment
 
 class PostForm(forms.ModelForm):
-    class Meta:
+     tags = forms.CharField(help_text="Separate tags with commas")
+
+     class Meta:
         model = Post
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'tags']
+
+        def clean_tags(self):
+         tags = self.cleaned_data['tags']
+         return [tag.strip() for tag in tags.split(",")]  # Convert input into list
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()  # Adding an email field

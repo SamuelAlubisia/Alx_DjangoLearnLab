@@ -12,6 +12,7 @@ from .views import (
     CommentDeleteView
      
 )
+from .views import search_posts
 
 
 urlpatterns = [
@@ -35,4 +36,9 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
     path('', views.home, name='blog-home'),  # Home page for the blog app
+]
+
+urlpatterns = [
+    path('search/', search_posts, name='search'),
+    path('tags/<str:tag_name>/', PostsByTagView.as_view(), name='posts_by_tag'), # type: ignore
 ]
