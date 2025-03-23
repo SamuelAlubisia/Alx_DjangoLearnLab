@@ -25,7 +25,6 @@
     <p>No comments yet. Be the first to comment!</p>
 {% endfor %}
 
-<!-- Add Comment Form -->
 {% if user.is_authenticated %}
     <form method="post" action="{% url 'add-comment' post.id %}">
         {% csrf_token %}
@@ -35,4 +34,5 @@
 {% else %}
     <p>You must be logged in to comment.</p>
 {% endif %}
+
 
