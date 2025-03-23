@@ -13,6 +13,7 @@ from .views import (
      
 )
 from .views import search_posts
+from .views import PostByTagListView  
 
 
 urlpatterns = [
@@ -41,4 +42,8 @@ urlpatterns = [
 urlpatterns = [
     path('search/', search_posts, name='search'),
     path('tags/<str:tag_name>/', PostsByTagView.as_view(), name='posts_by_tag'), # type: ignore
+]
+
+urlpatterns = [
+    path('tags/<slug:tag_slug>/', PostByTagListView.as_view(), name='posts_by_tag'),
 ]
