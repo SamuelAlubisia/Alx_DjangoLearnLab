@@ -2,13 +2,15 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, Post, Comment
+from taggit.forms import TagWidget # type: ignore # Import TagWidget for styling the tag input field
 
 class PostForm(forms.ModelForm):
-     tags = forms.CharField(help_text="Separate tags with commas")
-
-     class Meta:
+    class Meta:
         model = Post
         fields = ['title', 'content', 'tags']
+        widgets = {
+            'tags': TagWidget(),  # Use TagWidget for a better tag input experience
+        }
 
         def clean_tags(self):
          tags = self.cleaned_data['tags']
