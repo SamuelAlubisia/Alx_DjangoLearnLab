@@ -4,7 +4,6 @@ from rest_framework.views import APIView # type: ignore
 from rest_framework.authtoken.models import Token # type: ignore
 from rest_framework.permissions import AllowAny # type: ignore
 from .serializers import UserRegistrationSerializer, UserLoginSerializer
-from django.contrib.auth import 
 from rest_framework.permissions import IsAuthenticated # type: ignore
 from rest_framework.authentication import TokenAuthentication # type: ignore
 from django.contrib.auth import get_user_model
